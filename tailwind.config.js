@@ -1,9 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    './src/pug/**/*.pug', './src/**/*.html'
+  ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'pt-serif': ['PT Serif', 'serif'], // Создаём новый класс font-pt-serif
+        'serif': ['PT Serif', 'Georgia', 'serif'], // Или переопределяем стандартный serif
+      },
+    },
   },
   plugins: [],
 }
-

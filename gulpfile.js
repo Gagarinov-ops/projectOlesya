@@ -7,9 +7,10 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const mediaquery = require('postcss-combine-media-query');
 const cssnano = require('cssnano');
-const htmlMinify = require('html-minifier');
 const tailwindcss = require('tailwindcss');
+const pug = require('gulp-pug');
 
+// Сервер с автообновлением
 function serve() {
   browserSync.init({
     server: {
@@ -18,28 +19,39 @@ function serve() {
   });
 }
 
-function html() {
-  const options = {
-      removeComments: true,
-      removeRedundantAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      sortClassName: true,
-      useShortDoctype: true,
-      collapseWhitespace: true,
-        minifyCSS: true,
-        keepClosingSlash: true
-    };
-  return gulp.src('src/**/*.html')
+// Компиляция Pug в HTML
+function compilePug() {
+  return gulp.src('src/pug/pages/**/*.pug')
     .pipe(plumber())
-    .on('data', function(file) {
-              const buferFile = Buffer.from(htmlMinify.minify(file.contents.toString(), options))
-              return file.contents = buferFile
-            })
+    .pipe(pug({
+      pretty: true,           // Красивый HTML для разработки
+      basedir: './src/pug'    // Базовая директория для includes/extends
+    }))
     .pipe(gulp.dest('dist/'))
     .pipe(browserSync.reload({stream: true}));
 }
 
+// Копирование шрифтов
+function fonts() {
+  return gulp.src('src/assets/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe(browserSync.reload({stream: true}));
+}
+
+// Копирование остальных ассетов (иконки, файлы и т.д.)
+function assets() {
+  return gulp.src('src/assets/**/*')
+    .pipe(gulp.dest('dist/assets'))
+    .pipe(browserSync.reload({stream: true}));
+}
+
+function customCss() {
+  return gulp.src('src/blocks/**/*.css')     // ← БЭМ блоки
+    .pipe(concat('custom.css'))
+    .pipe(gulp.dest('dist/css/'));
+}
+
+// Tailwind CSS
 function tailwindCss() {
   const plugins = [
     tailwindcss(),
@@ -48,54 +60,64 @@ function tailwindCss() {
     cssnano()
   ];
 
-  return gulp.src('src/styles/main.css')  // ← один файл
+  return gulp.src('src/styles/main.css')
     .pipe(plumber())
     .pipe(postcss(plugins))
-    .pipe(gulp.dest('dist/css/'))         // → dist/css/main.css
+    .pipe(gulp.dest('dist/css/'))       
     .pipe(browserSync.reload({stream: true}));
 }
 
-function css() {
+// Кастомные CSS блоки
+function customCss() {
   const plugins = [
     autoprefixer(),
     mediaquery(),
     cssnano()
   ];
-    return gulp.src('src/blocks/**/*.css')
-      .pipe(plumber())
-      .pipe(concat('bundle.css'))
-      .pipe(postcss(plugins))
-      .pipe(gulp.dest('dist/'))
-      .pipe(browserSync.reload({stream: true}));
+  return gulp.src('src/blocks/**/*.css')
+    .pipe(plumber())
+    .pipe(concat('custom.css'))
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest('dist/css/'))
+    .pipe(browserSync.reload({stream: true}));
 }
 
+// Копирование изображений
 function images() {
   return gulp.src('src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}')
     .pipe(gulp.dest('dist/images'))
     .pipe(browserSync.reload({stream: true}));
 }
 
+// Очистка папки dist
 function clean() {
   return del('dist');
 }
 
+// Отслеживание изменений
 function watchFiles() {
-  gulp.watch(['src/**/*.html'], html);
+  gulp.watch(['src/pug/**/*.pug'], compilePug);
   gulp.watch(['src/styles/**/*.css'], tailwindCss); 
-  gulp.watch(['src/blocks/**/*.css'], css);
-  gulp.watch(['src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}'], images);
+  gulp.watch(['src/blocks/**/*.css'], customCss);
+  gulp.watch(['src/images/**/*'], images);
+  gulp.watch(['src/assets/**/*'], assets);
   gulp.watch(['tailwind.config.js'], tailwindCss);
 }
 
-const build = gulp.series(clean, gulp.parallel(html, tailwindCss, css, images));
-const watchapp = gulp.parallel(build, watchFiles, serve);  
+// Сборка проекта
+const build = gulp.series(clean, gulp.parallel(compilePug, tailwindCss, customCss, images, assets, fonts));
 
+// Режим разработки
+const watchapp = gulp.parallel(build, watchFiles, serve);
+
+// Экспорт задач
 exports.clean = clean;
-exports.css = css;
+exports.customCss = customCss;
 exports.tailwindCss = tailwindCss;
-exports.html = html;
+exports.compilePug = compilePug;
 exports.images = images;
-
+exports.assets = assets;
+exports.fonts = fonts;
 exports.build = build;
 exports.watchapp = watchapp;
 exports.default = watchapp;
