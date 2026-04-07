@@ -1,0 +1,13 @@
+//- src/pug/components/price-card.pug
+mixin price-card(title, price, unit, features)
+  .price-card(class="bg-white rounded-3xl p-8 flex-1 min-w-[240px] border border-[#EDE5DB] hover:shadow-lg transition-all")
+    h3(class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]")= title
+    .price(class="text-3xl font-bold text-[#2C5F5F] my-5")
+      | #{price} ₽ 
+      small(class="text-base font-normal text-gray-500") / #{unit}
+    ul.price-list(class="space-y-3 my-5")
+      each feature in features
+        li(class="flex items-center gap-2 text-[#4A4A4A]")
+          span(class="text-[#2C5F5F]") ✓
+          = feature
+    a.btn(href="#contact", class="block w-full text-center bg-[#2C5F5F] text-white py-3 rounded-full font-semibold hover:bg-[#1F4545] transition-all") Выбрать

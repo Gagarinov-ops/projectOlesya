@@ -1,21 +1,49 @@
 extends ../layouts/default
 
-include ../components/card/profile-card
-include ../components/forms/contact-form
+include ../components/hero
+include ../components/feature-card
+include ../components/price-card
+include ../components/review-card
+include ../components/contact-form
 
 block content
-  .flex-col.items-center.bg-gray-100.pt-28
-    .container.mx-auto.p-4
-      h1.text-3xl.font-bold.text-blue-600 Еремчук Олеся Анатольевна
-      p.text-gray-700.mt-4 Репетитор по русскому языку и литературе
-
-      //- Карточка учителя
-      +profile-card(
-        'images/download.png',
-        'Еремчук Олеся Анатольевна',
-        'Учитель высшей категории, стаж 15 лет',
-        'Помогаю ученикам полюбить русский язык и литературу. Готовлю к ОГЭ, ЕГЭ, итоговому сочинению.'
-      )
-
-      //- Форма контактов
+  // Hero секция
+  +hero(
+    'images/download.png',
+    'Олеся Анатольевна',
+    '📖 опыт 15 лет | высшая категория',
+    'Олеся Анатольевна<br>репетитор по русскому языку и литературе',
+    'Помогаю полюбить родной язык, писать сочинения без страха и сдавать экзамены на высокие баллы. Индивидуальный подход к каждому ученику.'
+  )
+  
+  // Преимущества (секция "Почему выбирают")
+  section(id="about", class="py-16 md:py-20")
+    .container(class="max-w-[1280px] mx-auto px-6 text-center")
+      h2(class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] inline-block relative mb-12 after:content-[''] after:absolute after:-bottom-3 after:left-0 after:w-16 after:h-1 after:bg-[#B68B5C] after:rounded-full after:left-1/2 after:-translate-x-1/2") Почему выбирают мои занятия
+      .features-grid(class="flex flex-wrap gap-10 justify-center mt-6")
+        +feature-card('✍️', 'Сочинения без боли', 'Структура, аргументы, клише — научу писать на максимум даже самых стеснительных.')
+        +feature-card('🎭', 'Литература как кино', 'Разбираем героев и конфликты, чтобы итоговое собеседование не пугало.')
+        +feature-card('📈', 'Результаты 85+ баллов', 'Мои ученики поступают в топовые вузы. ОГЭ сдают на «5» уже после полугода.')
+  
+  // Цены
+  section(id="prices", class="py-16 md:py-20 bg-[#FEFAF4]")
+    .container(class="max-w-[1280px] mx-auto px-6")
+      h2(class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12") Стоимость занятий
+      .price-grid(class="flex flex-wrap gap-8 justify-center")
+        +price-card('Русский язык', '1 500', '60 мин', ['Повышение успеваемости', 'Подготовка к ВПР', 'Разбор правил без зубрежки'])
+        +price-card('Подготовка к ОГЭ', '1 800', '60 мин', ['Тестовая часть + изложение', 'Устное собеседование', 'Пробные варианты еженедельно'])
+        +price-card('ЕГЭ + итоговое сочинение', '2 200', '80 мин', ['Сочинение 27 (максимум баллов)', 'Вся теория литературы', 'Интенсив перед экзаменом'])
+  
+  // Отзывы
+  section(class="py-16 md:py-20")
+    .container(class="max-w-[1280px] mx-auto px-6")
+      h2(class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12") Отзывы
+      .reviews-grid(class="space-y-8 max-w-3xl mx-auto")
+        +review-card('«Олеся Анатольевна — педагог с большой буквы. Сын начал читать классику сам, а на ЕГЭ по русскому набрал 94 балла. Огромное спасибо за душевность и профессионализм!»', '— Елена, мама выпускника')
+        +review-card('«Дочка боялась писать сочинения, а теперь пишет их с удовольствием. Занятия проходят легко, атмосфера доверительная. Рекомендую от всей души.»', '— Светлана, 9 класс')
+  
+  // Контакты
+  section(id="contact", class="py-16 md:py-20")
+    .container(class="max-w-[1280px] mx-auto px-6")
+      h2(class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12") Свяжитесь со мной
       +contact-form()

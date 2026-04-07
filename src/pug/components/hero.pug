@@ -1,0 +1,16 @@
+//- src/pug/components/hero.pug
+mixin hero(photoSrc, name, badge, title, description)
+  section(class="py-20 md:py-24")
+    .container(class="max-w-[1280px] mx-auto px-6")
+      .flex(class="flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16")
+        // Левая колонка с текстом
+        .hero-content(class="flex-1 text-center lg:text-left")
+          .badge(class="inline-block bg-[#EADECB] text-[#5A3E2B] px-4 py-1.5 rounded-full text-sm font-medium mb-5")= badge
+          h1(class="font-serif font-semibold text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-[#1A3A3A] mb-4")!= title
+          p(class="text-lg md:text-xl text-[#3C3C3C] mb-6 max-w-xl lg:mx-0 mx-auto")= description
+          a.btn(href="#contact", class="inline-block bg-[#2C5F5F] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-[#1F4545] transition-all hover:-translate-y-1 shadow-md") 👉 Записаться на пробный урок
+          p(class="text-sm text-gray-500 mt-5") 📍 Онлайн · Первое занятие — знакомство бесплатно
+        
+        // Правая колонка с фото
+        .hero-image(class="flex-1 text-center")
+          img(src=photoSrc, alt=name, class="w-full max-w-sm lg:max-w-md mx-auto rounded-3xl shadow-2xl object-cover aspect-[3/4] bg-[#E6DED3]")

@@ -1,0 +1,5 @@
+//- src/pug/components/review-card.pug
+mixin review-card(text, author)
+  .review(class="bg-white p-8 md:p-9 rounded-3xl max-w-2xl mx-auto border-l-[6px] border-l-[#B68B5C] shadow-sm")
+    p(class="text-lg md:text-xl italic mb-5 text-[#2A2A2A]")= text
+    .review-author(class="font-bold text-[#2C5F5F]")= author

@@ -1,0 +1,6 @@
+//- src/pug/components/feature-card.pug
+mixin feature-card(icon, title, text)
+  .feature-card(class="bg-white p-8 rounded-3xl flex-1 min-w-[220px] text-center border border-[#F0E9DF] hover:border-[#DCCFBE] transition-all hover:-translate-y-1 shadow-sm")
+    .feature-icon(class="text-5xl mb-5")= icon
+    h3(class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]")= title
+    p(class="text-[#4A4A4A] leading-relaxed")= text

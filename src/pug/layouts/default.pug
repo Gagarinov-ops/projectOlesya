@@ -2,20 +2,15 @@ doctype html
 html(lang="ru")
   head
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Еремчук Олеся Анатольевна
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, viewport-fit=cover")
+    title= pageTitle || "Репетитор по русскому языку и литературе | Анна Владимировна"
+    
+    link(href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet")
     link(rel="stylesheet", href="css/main.css")
-    link(rel="stylesheet", href="css/custom.css")
-  body(class="font-sans text-base")
-    .w-full(class="sm:w-[90%] md:max-w-[1200px] lg:max-w-[1400px] xl:max-w-[1920px] mx-auto px-4")
-      
-      include ../components/ui/navbar
-      
-      +navbar([
-        { text: 'Главная', link: '/' },
-        { text: 'О нас', link: '/about' },
-        { text: 'Контакты', link: '/contacts' }
-      ])
-                  
-      main
-        block content
+    //- custom.css больше не нужен, но оставим на всякий случай пустым
+  
+  body(class="font-sans bg-[#FCF9F4] text-[#2A2A2A] leading-relaxed scroll-smooth")
+    include ../components/header
+    main
+      block content
+    include ../components/footer
