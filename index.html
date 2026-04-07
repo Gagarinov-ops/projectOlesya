@@ -1,408 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Репетитор по русскому языку и литературе | Анна Владимировна</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FCF9F4;  /* кремовый фон как бумага */
-            color: #2A2A2A;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* типографика */
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            color: #1A3A3A;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #B68B5C; /* золотистый акцент */
-            border-radius: 4px;
-        }
-        .text-center h2:after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #2C5F5F;  /* глубокий сине-зеленый — чернильный */
-            color: white;
-            padding: 14px 36px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        .btn:hover {
-            background-color: #1F4545;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(44,95,95,0.2);
-        }
-
-        /* секции */
-        section {
-            padding: 80px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .hero {
-            padding: 100px 0 60px;
-        }
-        .hero-grid {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-        .hero-content {
-            flex: 1;
-        }
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-        .hero-image img {
-            width: 100%;
-            max-width: 380px;
-            border-radius: 32px;
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
-            object-fit: cover;
-            aspect-ratio: 3/4;
-            background: #E6DED3;
-        }
-        .badge {
-            background: #EADECB;
-            color: #5A3E2B;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        /* три колонки */
-        .features-grid {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 40px;
-        }
-        .feature-card {
-            background: white;
-            padding: 32px 24px;
-            border-radius: 28px;
-            flex: 1;
-            min-width: 220px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-            transition: all 0.25s;
-            border: 1px solid #F0E9DF;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #DCCFBE;
-        }
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .feature-card h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 12px;
-            font-size: 1.5rem;
-        }
-
-        /* карточки услуг */
-        .price-grid {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .price-card {
-            background: white;
-            border-radius: 28px;
-            padding: 32px 24px;
-            flex: 1;
-            min-width: 240px;
-            border: 1px solid #EDE5DB;
-            transition: all 0.2s;
-        }
-        .price-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-        }
-        .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2C5F5F;
-            margin: 20px 0;
-        }
-        .price small {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #6B6B6B;
-        }
-        .price-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-        .price-list li {
-            margin: 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* отзыв */
-        .review {
-            background: white;
-            padding: 36px;
-            border-radius: 32px;
-            max-width: 700px;
-            margin: 0 auto;
-            border-left: 6px solid #B68B5C;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
-        }
-        .review p {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        .review-author {
-            font-weight: 700;
-            color: #2C5F5F;
-        }
-
-        /* контакты */
-        .contact-flex {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .contact-info {
-            flex: 1;
-        }
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 25px;
-        }
-        .social-link {
-            background: #2C5F5F10;
-            padding: 12px 20px;
-            border-radius: 60px;
-            text-decoration: none;
-            color: #2C5F5F;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid #2C5F5F20;
-        }
-        .social-link:hover {
-            background: #2C5F5F;
-            color: white;
-        }
-        .contact-form {
-            flex: 1;
-            background: white;
-            padding: 32px;
-            border-radius: 32px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border: 1px solid #E2D9CF;
-            border-radius: 20px;
-            font-family: 'Inter', sans-serif;
-            background: #FEFCF8;
-        }
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: #6B6B6B;
-            font-size: 0.85rem;
-        }
-        @media (max-width: 800px) {
-            h1 { font-size: 2.4rem; }
-            h2 { font-size: 1.8rem; }
-            .hero-grid { flex-direction: column-reverse; text-align: center; }
-            .hero-content { text-align: center; }
-            .btn { margin-top: 10px; }
-        }
-        .text-center { text-align: center; }
-        .mt-2 { margin-top: 16px; }
-    </style>
-</head>
-<body>
-
-<div class="container hero">
-    <div class="hero-grid">
-        <div class="hero-content">
-            <div class="badge">📖  опыт 12 лет  |  высшая категория</div>
-            <h1>Анна Владимировна<br>репетитор по русскому языку и литературе</h1>
-            <p style="font-size: 1.2rem; margin: 24px 0; color: #3C3C3C;">Помогаю полюбить родной язык, писать сочинения без страха и сдавать экзамены на высокие баллы. Индивидуальный подход к каждому ученику.</p>
-            <a href="#contact" class="btn">👉 Записаться на пробный урок</a>
-            <p style="margin-top: 20px; font-size: 0.9rem;">📍 Онлайн / Москва · Первое занятие — знакомство бесплатно</p>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body class="font-sans bg-[#FCF9F4] text-[#2A2A2A] leading-relaxed scroll-smooth">
+    <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-[#EDE5DB]">
+      <div class="container max-w-[1280px] mx-auto px-6 py-4 flex justify-between items-center"><a class="logo font-serif font-semibold text-2xl text-[#1A3A3A] hover:text-[#2C5F5F] transition-colors" href="/">Анна Владимировна</a>
+        <nav class="hidden md:flex gap-8"><a class="text-[#2A2A2A] hover:text-[#2C5F5F] transition-colors" href="#about">Обо мне</a><a class="text-[#2A2A2A] hover:text-[#2C5F5F] transition-colors" href="#prices">Цены</a><a class="text-[#2A2A2A] hover:text-[#2C5F5F] transition-colors" href="#contact">Контакты</a></nav><a class="btn-small bg-[#2C5F5F] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#1F4545] transition-all hover:-translate-y-0.5 shadow-md" href="#contact">Записаться</a>
+      </div>
+    </header>
+    <main>
+      <!-- Hero секция-->
+      <section class="py-20 md:py-24">
+        <div class="container max-w-[1280px] mx-auto px-6">
+          <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
+            <!-- Левая колонка с текстом-->
+            <div class="hero-content flex-1 text-center lg:text-left">
+              <div class="badge inline-block bg-[#EADECB] text-[#5A3E2B] px-4 py-1.5 rounded-full text-sm font-medium mb-5">📖 опыт 15 лет | высшая категория</div>
+              <h1 class="font-serif font-semibold text-3xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-[#1A3A3A] mb-4">Олеся Анатольевна<br>репетитор по русскому языку и литературе</h1>
+              <p class="text-lg md:text-xl text-[#3C3C3C] mb-6 max-w-xl lg:mx-0 mx-auto">Помогаю полюбить родной язык, писать сочинения без страха и сдавать экзамены на высокие баллы. Индивидуальный подход к каждому ученику.</p><a class="btn inline-block bg-[#2C5F5F] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-[#1F4545] transition-all hover:-translate-y-1 shadow-md" href="#contact">👉 Записаться на пробный урок</a>
+              <p class="text-sm text-gray-500 mt-5">📍 Онлайн · Первое занятие — знакомство бесплатно</p>
+            </div>
+            <!-- Правая колонка с фото-->
+            <div class="hero-image flex-1 text-center"><img class="w-full max-w-sm lg:max-w-md mx-auto rounded-3xl shadow-2xl object-cover aspect-[3/4] bg-[#E6DED3]" src="images/download.png" alt="Олеся Анатольевна"/></div>
+          </div>
         </div>
-        <div class="hero-image">
-            <!-- вставьте вместо этого URL свою фотографию -->
-            <img src="https://placehold.co/600x800/F0E3D4/5A4A3A?text=Фото+учителя" alt="Анна Владимировна">
+      </section>
+      <!-- Преимущества (секция "Почему выбирают")-->
+      <section class="py-16 md:py-20" id="about">
+        <div class="container max-w-[1280px] mx-auto px-6 text-center">
+          <h2 class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] inline-block relative mb-12 after:content-[''] after:absolute after:-bottom-3 after:left-0 after:w-16 after:h-1 after:bg-[#B68B5C] after:rounded-full after:left-1/2 after:-translate-x-1/2">Почему выбирают мои занятия</h2>
+          <div class="features-grid flex flex-wrap gap-10 justify-center mt-6">
+            <div class="feature-card bg-white p-8 rounded-3xl flex-1 min-w-[220px] text-center border border-[#F0E9DF] hover:border-[#DCCFBE] transition-all hover:-translate-y-1 shadow-sm">
+              <div class="feature-icon text-5xl mb-5">✍️</div>
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">Сочинения без боли</h3>
+              <p class="text-[#4A4A4A] leading-relaxed">Структура, аргументы, клише — научу писать на максимум даже самых стеснительных.</p>
+            </div>
+            <div class="feature-card bg-white p-8 rounded-3xl flex-1 min-w-[220px] text-center border border-[#F0E9DF] hover:border-[#DCCFBE] transition-all hover:-translate-y-1 shadow-sm">
+              <div class="feature-icon text-5xl mb-5">🎭</div>
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">Литература как кино</h3>
+              <p class="text-[#4A4A4A] leading-relaxed">Разбираем героев и конфликты, чтобы итоговое собеседование не пугало.</p>
+            </div>
+            <div class="feature-card bg-white p-8 rounded-3xl flex-1 min-w-[220px] text-center border border-[#F0E9DF] hover:border-[#DCCFBE] transition-all hover:-translate-y-1 shadow-sm">
+              <div class="feature-icon text-5xl mb-5">📈</div>
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">Результаты 85+ баллов</h3>
+              <p class="text-[#4A4A4A] leading-relaxed">Мои ученики поступают в топовые вузы. ОГЭ сдают на «5» уже после полугода.</p>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-
-<section>
-    <div class="container text-center">
-        <h2>Почему выбирают мои занятия</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">✍️</div>
-                <h3>Сочинения без боли</h3>
-                <p>Структура, аргументы, клише — научу писать на максимум даже самых стеснительных.</p>
+      </section>
+      <!-- Цены-->
+      <section class="py-16 md:py-20 bg-[#FEFAF4]" id="prices">
+        <div class="container max-w-[1280px] mx-auto px-6">
+          <h2 class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12">Стоимость занятий</h2>
+          <div class="price-grid flex flex-wrap gap-8 justify-center">
+            <div class="price-card bg-white rounded-3xl p-8 flex-1 min-w-[240px] border border-[#EDE5DB] hover:shadow-lg transition-all">
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">Русский язык</h3>
+              <div class="price text-3xl font-bold text-[#2C5F5F] my-5">1 500 ₽ <small class="text-base font-normal text-gray-500">/ 60 мин</small></div>
+              <ul class="price-list space-y-3 my-5">
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Повышение успеваемости
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Подготовка к ВПР
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Разбор правил без зубрежки
+                </li>
+              </ul><a class="btn block w-full text-center bg-[#2C5F5F] text-white py-3 rounded-full font-semibold hover:bg-[#1F4545] transition-all" href="#contact">Выбрать</a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎭</div>
-                <h3>Литература как кино</h3>
-                <p>Разбираем героев и конфликты, чтобы итоговое собеседование не пугало.</p>
+            <div class="price-card bg-white rounded-3xl p-8 flex-1 min-w-[240px] border border-[#EDE5DB] hover:shadow-lg transition-all">
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">Подготовка к ОГЭ</h3>
+              <div class="price text-3xl font-bold text-[#2C5F5F] my-5">1 800 ₽ <small class="text-base font-normal text-gray-500">/ 60 мин</small></div>
+              <ul class="price-list space-y-3 my-5">
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Тестовая часть + изложение
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Устное собеседование
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Пробные варианты еженедельно
+                </li>
+              </ul><a class="btn block w-full text-center bg-[#2C5F5F] text-white py-3 rounded-full font-semibold hover:bg-[#1F4545] transition-all" href="#contact">Выбрать</a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Результаты 85+ баллов</h3>
-                <p>Мои ученики поступают в топовые вузы. ОГЭ сдают на «5» уже после полугода.</p>
+            <div class="price-card bg-white rounded-3xl p-8 flex-1 min-w-[240px] border border-[#EDE5DB] hover:shadow-lg transition-all">
+              <h3 class="font-serif font-semibold text-2xl mb-3 text-[#1A3A3A]">ЕГЭ + итоговое сочинение</h3>
+              <div class="price text-3xl font-bold text-[#2C5F5F] my-5">2 200 ₽ <small class="text-base font-normal text-gray-500">/ 80 мин</small></div>
+              <ul class="price-list space-y-3 my-5">
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Сочинение 27 (максимум баллов)
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Вся теория литературы
+                </li>
+                <li class="flex items-center gap-2 text-[#4A4A4A]"><span class="text-[#2C5F5F]">✓</span>Интенсив перед экзаменом
+                </li>
+              </ul><a class="btn block w-full text-center bg-[#2C5F5F] text-white py-3 rounded-full font-semibold hover:bg-[#1F4545] transition-all" href="#contact">Выбрать</a>
             </div>
+          </div>
         </div>
-    </div>
-</section>
-
-<section style="background: #FEFAF4;">
-    <div class="container">
-        <h2 class="text-center">Стоимость занятий</h2>
-        <div class="price-grid">
-            <div class="price-card">
-                <h3>Русский язык</h3>
-                <div class="price">1 500 ₽ <small>/ 60 мин</small></div>
-                <ul class="price-list">
-                    <li>✅ Повышение успеваемости</li>
-                    <li>✅ Подготовка к ВПР</li>
-                    <li>✅ Разбор правил без зубрежки</li>
-                </ul>
-                <a href="#contact" class="btn" style="width:100%; text-align:center;">Выбрать</a>
+      </section>
+      <!-- Отзывы-->
+      <section class="py-16 md:py-20">
+        <div class="container max-w-[1280px] mx-auto px-6">
+          <h2 class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12">Отзывы</h2>
+          <div class="reviews-grid space-y-8 max-w-3xl mx-auto">
+            <div class="review bg-white p-8 md:p-9 rounded-3xl max-w-2xl mx-auto border-l-[6px] border-l-[#B68B5C] shadow-sm">
+              <p class="text-lg md:text-xl italic mb-5 text-[#2A2A2A]">«Олеся Анатольевна — педагог с большой буквы. Сын начал читать классику сам, а на ЕГЭ по русскому набрал 94 балла. Огромное спасибо за душевность и профессионализм!»</p>
+              <div class="review-author font-bold text-[#2C5F5F]">— Елена, мама выпускника</div>
             </div>
-            <div class="price-card">
-                <h3>Подготовка к ОГЭ</h3>
-                <div class="price">1 800 ₽ <small>/ 60 мин</small></div>
-                <ul class="price-list">
-                    <li>✅ Тестовая часть + изложение</li>
-                    <li>✅ Устное собеседование</li>
-                    <li>✅ Пробные варианты еженедельно</li>
-                </ul>
-                <a href="#contact" class="btn" style="width:100%; text-align:center;">Выбрать</a>
+            <div class="review bg-white p-8 md:p-9 rounded-3xl max-w-2xl mx-auto border-l-[6px] border-l-[#B68B5C] shadow-sm">
+              <p class="text-lg md:text-xl italic mb-5 text-[#2A2A2A]">«Дочка боялась писать сочинения, а теперь пишет их с удовольствием. Занятия проходят легко, атмосфера доверительная. Рекомендую от всей души.»</p>
+              <div class="review-author font-bold text-[#2C5F5F]">— Светлана, 9 класс</div>
             </div>
-            <div class="price-card">
-                <h3>ЕГЭ + итоговое сочинение</h3>
-                <div class="price">2 200 ₽ <small>/ 80 мин</small></div>
-                <ul class="price-list">
-                    <li>✅ Сочинение 27 (максимум баллов)</li>
-                    <li>✅ Вся теория литературы</li>
-                    <li>✅ Интенсив перед экзаменом</li>
-                </ul>
-                <a href="#contact" class="btn" style="width:100%; text-align:center;">Выбрать</a>
-            </div>
+          </div>
         </div>
-    </div>
-</section>
-
-<section>
-    <div class="container">
-        <div class="review">
-            <p>«Анна Владимировна — педагог с большой буквы. Сын начал читать классику сам, а на ЕГЭ по русскому набрал 94 балла. Огромное спасибо за душевность и профессионализм!»</p>
-            <div class="review-author">— Елена, мама выпускника</div>
-        </div>
-        <div class="review mt-2">
-            <p>«Дочка боялась писать сочинения, а теперь пишет их с удовольствием. Занятия проходят легко, атмосфера доверительная. Рекомендую от всей души.»</p>
-            <div class="review-author">— Светлана, 9 класс</div>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <div class="container">
-        <h2 class="text-center">Свяжитесь со мной</h2>
-        <div class="contact-flex">
-            <div class="contact-info">
-                <p style="font-size: 1.2rem;">📞 Напишите в удобный мессенджер — отвечу в течение часа</p>
-                <div class="social-links">
-                    <a href="#" class="social-link">📱 Telegram</a>
-                    <a href="#" class="social-link">💬 WhatsApp</a>
-                    <a href="#" class="social-link">📧 anna.russian@teacher.ru</a>
-                </div>
-                <p style="margin-top: 28px;">📍 Онлайн-занятия по всей России · Интерактивная доска и домашние задания с проверкой</p>
+      </section>
+      <!-- Контакты-->
+      <section class="py-16 md:py-20" id="contact">
+        <div class="container max-w-[1280px] mx-auto px-6">
+          <h2 class="font-serif font-semibold text-3xl md:text-4xl text-[#1A3A3A] text-center mb-12">Свяжитесь со мной</h2>
+          <div class="flex flex-col lg:flex-row gap-10 items-stretch">
+            <!-- Контактная информация-->
+            <div class="contact-info flex-1">
+              <p class="text-xl text-[#2A2A2A] mb-6">📞 Напишите в удобный мессенджер — отвечу в течение часа</p>
+              <div class="social-links flex flex-wrap gap-4 mb-8"><a class="social-link bg-[#2C5F5F]/5 px-5 py-2.5 rounded-full text-[#2C5F5F] font-medium border border-[#2C5F5F]/20 hover:bg-[#2C5F5F] hover:text-white transition-all" href="#">📱 Telegram</a><a class="social-link bg-[#2C5F5F]/5 px-5 py-2.5 rounded-full text-[#2C5F5F] font-medium border border-[#2C5F5F]/20 hover:bg-[#2C5F5F] hover:text-white transition-all" href="#">💬 WhatsApp</a><a class="social-link bg-[#2C5F5F]/5 px-5 py-2.5 rounded-full text-[#2C5F5F] font-medium border border-[#2C5F5F]/20 hover:bg-[#2C5F5F] hover:text-white transition-all" href="#">📧 anna.russian@teacher.ru</a></div>
+              <p class="text-[#4A4A4A]">📍 Онлайн-занятия по всей России · Интерактивная доска и домашние задания с проверкой</p>
             </div>
-            <div class="contact-form">
-                <h3 style="margin-bottom: 16px;">Оставьте заявку</h3>
-                <input type="text" placeholder="Ваше имя">
-                <input type="tel" placeholder="Телефон или Telegram">
-                <textarea rows="3" placeholder="Класс / какой предмет интересует"></textarea>
-                <button class="btn" style="width:100%; margin-top: 10px;">Отправить →</button>
-                <p style="font-size: 0.8rem; margin-top: 12px;">Нажимая на кнопку, вы соглашаетесь с обработкой данных</p>
+            <!-- Форма-->
+            <div class="contact-form flex-1 bg-white p-8 rounded-3xl shadow-sm">
+              <h3 class="font-serif font-semibold text-2xl mb-4 text-[#1A3A3A]">Оставьте заявку</h3>
+              <form>
+                <input class="w-full p-3.5 mb-3 border border-[#E2D9CF] rounded-2xl bg-[#FEFCF8] focus:outline-none focus:border-[#2C5F5F] transition-colors" type="text" placeholder="Ваше имя"/>
+                <input class="w-full p-3.5 mb-3 border border-[#E2D9CF] rounded-2xl bg-[#FEFCF8] focus:outline-none focus:border-[#2C5F5F] transition-colors" type="tel" placeholder="Телефон или Telegram"/>
+                <textarea class="w-full p-3.5 mb-4 border border-[#E2D9CF] rounded-2xl bg-[#FEFCF8] focus:outline-none focus:border-[#2C5F5F] transition-colors" rows="3" placeholder="Класс / какой предмет интересует"></textarea>
+                <button class="w-full bg-[#2C5F5F] text-white py-3.5 rounded-full font-semibold hover:bg-[#1F4545] transition-all" type="submit">Отправить →</button>
+                <p class="text-xs text-gray-400 mt-3 text-center">Нажимая на кнопку, вы соглашаетесь с обработкой данных</p>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <p>© 2025 Анна Владимировна — репетитор по русскому языку и литературе</p>
-        <p style="margin-top: 10px;">Сайт создан с теплом к русскому слову</p>
-    </div>
-</footer>
-
-</body>
+      </section>
+    </main>
+    <footer class="text-center py-10 text-gray-500 text-sm border-t border-[#EDE5DB] mt-10">
+      <div class="container max-w-[1280px] mx-auto px-6">
+        <p>© 2025 Олеся Анатольевна Еремчук — репетитор по русскому языку и литературе</p>
+        <p class="mt-2">Сайт создан с теплом к русскому слову</p>
+      </div>
+    </footer>
+  </body>
 </html>
