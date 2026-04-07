@@ -1,12 +1,21 @@
-doctype html
-html(lang="ru")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Тест Pug
-    link(rel="stylesheet", href="css/main.css")
-    link(rel="stylesheet", href="css/custom.css")
-  body.bg-gray-100
+extends ../layouts/default
+
+include ../components/card/profile-card
+include ../components/forms/contact-form
+
+block content
+  .flex-col.items-center.bg-gray-100.pt-28
     .container.mx-auto.p-4
-      h1.text-3xl.font-bold.text-blue-600 Привет Разраб!
-      p.text-gray-700.mt-4 Ну что, поработаем.
+      h1.text-3xl.font-bold.text-blue-600 Еремчук Олеся Анатольевна
+      p.text-gray-700.mt-4 Репетитор по русскому языку и литературе
+
+      //- Карточка учителя
+      +profile-card(
+        'images/download.png',
+        'Еремчук Олеся Анатольевна',
+        'Учитель высшей категории, стаж 15 лет',
+        'Помогаю ученикам полюбить русский язык и литературу. Готовлю к ОГЭ, ЕГЭ, итоговому сочинению.'
+      )
+
+      //- Форма контактов
+      +contact-form()

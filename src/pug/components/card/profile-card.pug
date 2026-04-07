@@ -1,0 +1,23 @@
+mixin profile-card(photoSrc, name, description, fullText, wrapperClass = "")
+  .profile-card(class=`flex flex-col md:flex-row gap-6 md:gap-8 flex-col items-center bg-gray-100 pt-[100px] ${wrapperClass}`)
+    // Левая колонка с фото (30% ширины на десктопе, полная ширина на мобильных)
+    .profile-card__left(class="md:w-2/5 lg:w-1/3")
+      // Фото (высота 100px, ширина адаптивная)
+      img.profile-card__photo(
+        src=photoSrc, 
+        alt=name,
+        class="w-full h-[200px] object-contain rounded-lg shadow-md"
+      )
+      // ФИО под фото
+      h3.profile-card__name(class="text-lg font-bold mt-3 text-center md:text-left")= name
+      // Краткое описание (до 200 символов)
+      if description
+        p.profile-card__short-desc(class="text-sm text-gray-600 mt-1 text-center md:text-left")= description
+    
+    // Правая колонка с текстом (все оставшееся место)
+    .profile-card__right(class="md:flex-1")
+      .profile-card__full-text(class="text-base text-gray-700 leading-relaxed")
+        if fullText
+          p= fullText
+        else
+          block

@@ -1,0 +1,32 @@
+mixin contact-form()
+  form.contact-form(class="mt-6 space-y-4")
+    .form-group
+      label.block.text-sm.font-medium.text-gray-700.mb-1(for="name") Ваше имя *
+      input#name.w-full.px-4.py-2.border.border-gray-300.rounded-lg(
+        type="text",
+        name="name",
+        placeholder="Анна Сергеевна",
+        required
+      )
+    
+    .form-group
+      label.block.text-sm.font-medium.text-gray-700.mb-1(for="phone") Телефон или Telegram *
+      input#phone.w-full.px-4.py-2.border.border-gray-300.rounded-lg(
+        type="tel",
+        name="phone",
+        placeholder="+7 (999) 123-45-67",
+        required
+      )
+    
+    .form-group
+      label.block.text-sm.font-medium.text-gray-700.mb-1(for="grade") Класс
+      input#grade.w-full.px-4.py-2.border.border-gray-300.rounded-lg(
+        type="text",
+        name="grade",
+        placeholder="9 класс (готовлюсь к ОГЭ)"
+      )
+    
+    button.w-full.bg-blue-600.text-white.py-2.px-4.rounded-lg(
+      class="hover:bg-blue-700",
+      type="submit"
+    ) Отправить заявку

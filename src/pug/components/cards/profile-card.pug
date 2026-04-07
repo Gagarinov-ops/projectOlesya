@@ -1,0 +1,7 @@
+mixin profile-card(photoSrc, name, role, description)
+  .profile-card(class='bg-white rounded-lg shadow-md overflow-hidden')
+    img(src=photoSrc, alt=name, class='w-full h-48 object-cover')
+    .p-4
+      h3(class='text-xl font-bold text-gray-800')= name
+      p(class='text-sm text-blue-600 mb-2')= role
+      p(class='text-gray-600 text-sm')= description

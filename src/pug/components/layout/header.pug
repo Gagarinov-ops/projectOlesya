@@ -1,0 +1,10 @@
+mixin header(logoText = 'Логотип', navItems = [])
+  header(class='bg-white shadow-md')
+    .container(class='mx-auto px-4 py-4')
+      .flex(class='justify-between items-center')
+        a.logo(href='/', class='text-xl font-bold text-blue-600')= logoText
+        nav
+          ul(class='flex space-x-6')
+            each item in navItems
+              li
+                a(href=item.link, class='text-gray-700 hover:text-blue-600')= item.name

@@ -1,0 +1,10 @@
+mixin navbar(buttons = [])
+  .navbar(class="fixed top-0 left-0 w-full h-[50px] bg-gray-900/95 backdrop-blur-sm z-50")
+    .container(class="h-full mx-auto px-2")
+      nav(class="flex items-center justify-center gap-4 h-full")
+        each btn in buttons
+          button.nav-button(
+            class="relative px-4 py-1 text-white font-medium rounded-lg transition-all duration-300",
+            class="before:absolute before:inset-0 before:rounded-lg before:p-[2px] before:bg-gradient-silver before:-z-10",
+            class="hover:scale-105 active:scale-95"
+          )= btn.text
